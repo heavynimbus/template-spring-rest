@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+
+  jee-db:
+    container_name: jee-db
+    image: postgres:15.0-alpine
+    ports:
+      - '25432:5432'
+    environment:
+      POSTGRES_DB: jee-db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_PORT: 5432
+    volumes:
+      - jee-db-vol:/var/lib/postgres/data
+
+volumes:
+  jee-db-vol:
