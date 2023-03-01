@@ -1,4 +1,4 @@
-package com.junia.jeeproject.exception;
+package com.junia.jeeproject.dto;
 
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -12,8 +12,7 @@ import org.springframework.http.HttpStatus;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErrorInfo {
-
+public class ExceptionResponse {
   private HttpStatus status;
   private String message;
   private String url;
