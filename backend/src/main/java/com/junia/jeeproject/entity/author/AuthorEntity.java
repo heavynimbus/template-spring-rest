@@ -1,26 +1,33 @@
-package com.junia.jeeproject.entity.user;
+package com.junia.jeeproject.entity.author;
 
+import com.junia.jeeproject.entity.book.BookEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity {
+@Entity(name = "author")
+public class AuthorEntity {
 
   @Id
+  @Column(name = "id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
+  @Column(name = "name")
   private String name;
 
-  private String password;
+  @OneToMany
+  private List<BookEntity> books;
 }

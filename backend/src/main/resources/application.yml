@@ -1,18 +1,28 @@
 spring:
+  # Datasource configuration
   datasource:
     url: jdbc:postgresql://localhost:25432/jee-db
     username: user
     password: pass
 
+  # JPA configuration
   jpa:
     open-in-view: false
     hibernate:
+      # This field is used to create tables at startup
       ddl-auto: none
+    # This field is used to show SQL queries in the console
     show-sql: true
-
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  # Liquibase configuration
   liquibase:
     change-log: db/changelog-master.xml
+
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: method
+    path: /swagger
