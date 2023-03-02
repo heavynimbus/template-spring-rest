@@ -15,6 +15,6 @@ public class CreateBookRequest {
   @Min(value = 0, message = "Book price must be greater than 0")
   private Double price;
 
-  @NotNull(message = "Author id is mandatory")
+  @NotNull(message = "Book authorId is mandatory")
   private Integer authorId;
 }

@@ -5,6 +5,7 @@ import com.junia.jeeproject.dto.book.CreateBookRequest;
 import com.junia.jeeproject.facade.BookFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class BookController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   @Operation(summary = "Create book")
-  public BookResponse create(@RequestBody CreateBookRequest createBookRequest) {
+  public BookResponse create(@Valid @RequestBody CreateBookRequest createBookRequest) {
     return bookFacade.create(createBookRequest);
   }
 
@@ -51,13 +52,13 @@ public class BookController {
   @ResponseStatus(HttpStatus.OK)
   @Operation(summary = "Update book")
   public BookResponse update(@PathVariable Integer bookId,
-      @RequestBody CreateBookRequest createBookRequest) {
+      @Valid @RequestBody CreateBookRequest createBookRequest) {
     return bookFacade.update(bookId, createBookRequest);
   }
 
   @DeleteMapping("/{bookId}")
-  @ResponseStatus(HttpStatus.OK)
   @Operation(summary = "Delete book")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable Integer bookId) {
     bookFacade.delete(bookId);
   }

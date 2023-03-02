@@ -13,4 +13,5 @@ CREATE TABLE book
     author_id INTEGER       NOT NULL,
     CONSTRAINT book_pk PRIMARY KEY (id),
     CONSTRAINT book_author_fk FOREIGN KEY (author_id) REFERENCES author (id)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );

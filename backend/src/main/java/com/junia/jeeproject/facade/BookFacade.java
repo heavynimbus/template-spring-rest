@@ -39,8 +39,8 @@ public class BookFacade {
   }
 
   public BookResponse update(Integer bookId, CreateBookRequest createBookRequest) {
-    AuthorEntity authorEntity = authorService.findById(createBookRequest.getAuthorId());
     BookEntity book = bookService.findById(bookId);
+    AuthorEntity authorEntity = authorService.findById(createBookRequest.getAuthorId());
     bookMapper.updateEntity(book, createBookRequest, authorEntity);
     book = bookService.save(book);
     return bookMapper.bookEntityToBookResponse(book);
