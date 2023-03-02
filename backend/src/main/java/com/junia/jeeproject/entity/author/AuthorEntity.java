@@ -28,6 +28,6 @@ public class AuthorEntity {
   @Column(name = "name")
   private String name;
 
-  @OneToMany
+  @OneToMany(mappedBy = "author")
   private List<BookEntity> books;
 }

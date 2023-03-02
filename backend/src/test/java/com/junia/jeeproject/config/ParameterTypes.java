@@ -28,6 +28,11 @@ public class ParameterTypes {
     return uri;
   }
 
+  @ParameterType("true|false")
+  public Boolean bool(String bool) {
+    return Boolean.valueOf(bool);
+  }
+
   @DocStringType
   public JsonNode jsonNode(String docString) {
     return docString(docString, JsonNode.class);

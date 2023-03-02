@@ -4,7 +4,7 @@ services:
 
   jee-db:
     container_name: jee-db
-    image: postgres:15.0-alpine
+    image: postgres:15.2-alpine
     ports:
       - '25432:5432'
     environment:

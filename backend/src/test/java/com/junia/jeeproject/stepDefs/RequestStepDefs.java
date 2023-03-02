@@ -37,7 +37,7 @@ public class RequestStepDefs {
   }
 
   @When("I send a {httpMethod} request to {uri}")
-  public void i_send_a_GET_request_to(HttpMethod httpMethod, String uri) throws Exception {
+  public void i_send_a_request_to(HttpMethod httpMethod, String uri) throws Exception {
     HttpHeaders headers = world.get(WorldKey.REQUEST_HEADERS);
     JsonNode body = world.get(WorldKey.REQUEST_BODY);
     MockHttpServletRequestBuilder req = request(httpMethod, uri);
@@ -46,5 +46,7 @@ public class RequestStepDefs {
     ResultActions result = mockMvc.perform(req)
         .andDo(print());
     world.put(WorldKey.RESPONSE, result);
+    world.remove(WorldKey.REQUEST_HEADERS);
+    world.remove(WorldKey.REQUEST_BODY);
   }
 }
