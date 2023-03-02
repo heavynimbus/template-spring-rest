@@ -25,4 +25,4 @@ springdoc:
   swagger-ui:
     tags-sorter: alpha
     operations-sorter: method
-    path: /swagger
+    path: /swagger-ui
