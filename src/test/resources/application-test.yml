@@ -1,3 +1,6 @@
 spring:
+  test:
+    database:
+      replace: none
   jpa:
     show-sql: true
