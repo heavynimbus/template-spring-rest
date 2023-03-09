@@ -13,8 +13,7 @@ Feature: BookController - find all
     And response array length at "$" is 0
 
   Scenario: find all books
-    Given there are 5 authors in the database
-    And there are 15 books in the database
+    Given there are 15 books in the database
     When I send a GET request to /books
     Then response status is OK
     And response array length at "$" is 15

@@ -2,6 +2,15 @@ version: '3.7'
 
 services:
 
+
+  sonarqube:
+    container_name: sonarqube
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    ports:
+      - '9000:9000'
+    image: 'sonarqube:latest'
+
   jee-db:
     container_name: jee-db
     image: postgres:15.2-alpine
@@ -13,7 +22,10 @@ services:
       POSTGRES_PASSWORD: pass
       POSTGRES_PORT: 5432
     volumes:
-      - jee-db-vol:/var/lib/postgres/data
+      - jee-db:/var/lib/postgres/data
 
 volumes:
-  jee-db-vol:
+  jee-db:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:

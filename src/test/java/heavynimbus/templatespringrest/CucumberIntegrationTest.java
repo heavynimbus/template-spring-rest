@@ -6,7 +6,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "/features",
+    features = {
+        "classpath:features/author",
+        "classpath:features/book"
+    },
     glue = {
         "heavynimbus.templatespringrest.stepDefs",
         "heavynimbus.templatespringrest.config"

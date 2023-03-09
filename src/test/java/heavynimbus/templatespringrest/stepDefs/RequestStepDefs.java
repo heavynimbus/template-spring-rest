@@ -43,8 +43,8 @@ public class RequestStepDefs {
     MockHttpServletRequestBuilder req = request(httpMethod, uri);
     if (headers != null) req = req.headers(headers);
     if (body != null) req = req.content(world.get(WorldKey.REQUEST_BODY).toString());
-    ResultActions result = mockMvc.perform(req)
-        .andDo(print());
+    ResultActions result = mockMvc.perform(req);
+        //.andDo(print());
     world.put(WorldKey.RESPONSE, result);
     world.remove(WorldKey.REQUEST_HEADERS);
     world.remove(WorldKey.REQUEST_BODY);

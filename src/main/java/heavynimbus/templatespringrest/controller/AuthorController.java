@@ -47,12 +47,10 @@ public class AuthorController {
   @ResponseStatus(OK)
   @GetMapping("/{authorId}")
   @Operation(summary = "Get author by id")
-  @ApiResponses({
-      @ApiResponse(responseCode = "200", description = "Operation success",
-          content = @Content(schema = @Schema(implementation = AuthorResponse.class))),
-      @ApiResponse(responseCode = "404", description = "Author not found",
-          content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
-  })
+  @ApiResponse(responseCode = "200", description = "Operation success",
+      content = @Content(schema = @Schema(implementation = AuthorResponse.class)))
+  @ApiResponse(responseCode = "404", description = "Author not found",
+      content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
   public AuthorResponse getAuthorById(@PathVariable Integer authorId) {
     return authorFacade.findById(authorId);
   }

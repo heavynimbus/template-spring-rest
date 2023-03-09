@@ -3,4 +3,4 @@ spring:
     database:
       replace: none
   jpa:
-    show-sql: true
+    show-sql: false

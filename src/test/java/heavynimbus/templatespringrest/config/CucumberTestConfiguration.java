@@ -16,9 +16,9 @@ import org.testcontainers.containers.PostgreSQLContainer;
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @CucumberContextConfiguration
-@ContextConfiguration(initializers = CucumberConfiguration.DockerPostgresDataSourceInitializer.class)
+@ContextConfiguration(initializers = CucumberTestConfiguration.DockerPostgresDataSourceInitializer.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class CucumberConfiguration {
+public class CucumberTestConfiguration {
 
   @ClassRule
   public static final PostgreSQLContainer<?> postgreSQLContainer;
