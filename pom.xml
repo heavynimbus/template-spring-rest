@@ -22,6 +22,7 @@
 		<springdoc.openapi.version>2.0.2</springdoc.openapi.version>
 		<cucumber.version>7.10.1</cucumber.version>
 		<testcontainer.version>1.17.6</testcontainer.version>
+		<maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -135,6 +136,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- enable annotation processing (lombok, mapstruct) -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -152,6 +155,25 @@
 							<version>${mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<!-- enable cucumber on test scope -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<includes>
+						<include>**/*Test</include>
+					</includes>
 				</configuration>
 			</plugin>
 		</plugins>
