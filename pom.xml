@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>template-spring-rest</name>
 	<description>template-spring-rest</description>
+	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>17</java.version>
@@ -22,6 +23,7 @@
 		<springdoc.openapi.version>2.0.2</springdoc.openapi.version>
 		<cucumber.version>7.10.1</cucumber.version>
 		<testcontainer.version>1.17.6</testcontainer.version>
+		<maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -119,6 +121,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Environment -->
+		<dependency>
+			<groupId>me.paulschwarz</groupId>
+			<artifactId>spring-dotenv</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -127,6 +136,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<!-- enable remote debug on port 8081 -->
+					<jvmArguments>
+						-Xdebug
+						-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8081
+					</jvmArguments>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -135,6 +149,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!-- enable annotation processing (lombok, mapstruct) -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -152,6 +168,25 @@
 							<version>${mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<!-- enable cucumber on test scope -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<includes>
+						<include>**/*Test</include>
+					</includes>
 				</configuration>
 			</plugin>
 		</plugins>

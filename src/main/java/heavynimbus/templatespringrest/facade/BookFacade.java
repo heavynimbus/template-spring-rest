@@ -12,12 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class BookFacade {
-
-  private final BookService bookService;
-  private final AuthorService authorService;
-  private final BookMapper bookMapper;
+public record BookFacade(BookService bookService,AuthorService authorService,BookMapper bookMapper) {
 
   public List<BookResponse> findAll() {
     return bookService.findAll()
