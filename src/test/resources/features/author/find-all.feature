@@ -5,7 +5,7 @@ Feature: AuthorController - find all
     And request headers are:
       | Content-Type | application/json |
       | Accept       | application/json |
-    When I send a GET request to /books
+    When I send a GET request to /authors
     Then response status is OK
     And response header "Content-Type" is "application/json"
     And response array length at "$" is 0
