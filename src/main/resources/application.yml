@@ -1,9 +1,9 @@
 spring:
-  # Datasource configuration
+  # Datasource configuration for development
   datasource:
-    url: jdbc:postgresql://localhost:25432/jee-db
-    username: user
-    password: pass
+    url: jdbc:postgresql://localhost:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
 
   # JPA configuration
   jpa:
@@ -12,7 +12,7 @@ spring:
       # This field is used to create tables at startup
       ddl-auto: none
     # This field is used to show SQL queries in the console
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect

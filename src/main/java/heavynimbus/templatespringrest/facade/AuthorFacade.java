@@ -6,15 +6,10 @@ import heavynimbus.templatespringrest.entity.author.AuthorEntity;
 import heavynimbus.templatespringrest.mapper.AuthorMapper;
 import heavynimbus.templatespringrest.service.AuthorService;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class AuthorFacade {
-
-  private final AuthorMapper authorMapper;
-  private final AuthorService authorService;
+public record AuthorFacade(AuthorMapper authorMapper,AuthorService authorService) {
 
   public List<AuthorResponse> findAll() {
     return authorService

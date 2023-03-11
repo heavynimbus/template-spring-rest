@@ -2,38 +2,35 @@ version: '3.7'
 
 services:
 
-  template-spring-rest:
-    container_name: template-spring-rest
-    image: template-spring-rest:dev
+  template-spring-rest-production:
+    container_name: template-spring-rest-production
+    image: template-spring-rest:prod
     build:
       context: .
-      target: development
     ports:
-      - '8080:8080' # Spring Boot
-      - '8081:8081' # Remote debug
+      - '80:8080' # Spring Boot
+      - '8082:8081' # Remote debug
     environment:
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USER: ${DATABASE_USER}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_PORT: ${DATABASE_PORT}
-      DATABASE_HOST: template-db
-    volumes:
-      - ./target:/app/target
+      DATABASE_HOST: template-production-db
     depends_on:
-      - template-db
+      - template-production-db
 
-  template-db:
-    container_name: template-db
+  template-production-db:
+    container_name: template-production-db
     image: postgres:15.2-alpine
     ports:
-      - '5432:5432'
+      - '5433:5432'
     environment:
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_PORT: ${DATABASE_PORT}
     volumes:
-      - template-db-vol:/var/lib/postgres/data
+      - template-production-db-vol:/var/lib/postgres/data
 
 volumes:
-  template-db-vol:
+  template-production-db-vol:
