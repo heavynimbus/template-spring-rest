@@ -1,0 +1,27 @@
+name: Format Java Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  compile-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: Testing application
+        run: |
+          mvn compile
+          mvn formatter:format
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: 'github_actions'
+          message: '🎨 Format Java code'
+
